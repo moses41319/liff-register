@@ -6,7 +6,7 @@
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 </head>
 <body>
-  <p>⏳ 請稍候，正在開啟註冊表單...</p>
+  <p>⏳ 正在開啟註冊表單，請稍候...</p>
   <script>
     const liffId = "2007867560-dlxn7yaL";
     const formBaseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSc4z5u6DQP2MDPQkm8-T6jFZ_plYgFVVFDwmZPqdeA_47VtGA/viewform?usp=pp_url&entry.1796380726=[[USER_ID]]";
@@ -22,7 +22,7 @@
       const userId = profile.userId;
 
       const redirectUrl = formBaseUrl.replace('[[USER_ID]]', encodeURIComponent(userId));
-      window.location.href = redirectUrl;
+      location.replace(redirectUrl); // 用這行替代 window.location.href
     }
 
     main();
