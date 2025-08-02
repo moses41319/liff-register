@@ -8,9 +8,8 @@
 <body>
   <p>⏳ 請稍候，正在開啟註冊表單...</p>
   <script>
-    const liffId = "2007867560-dlxn7yaL"; // 你的 LIFF ID
-    const formBaseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSc4z5u6DQP2MDPQkm8-T6jFZ_plYgFVVFDwmZPqdeA_47VtGA/viewform?usp=pp_url";
-    const lineIdEntry = "entry.11"; // userId 對應欄位
+    const liffId = "2007867560-dlxn7yaL";
+    const formBaseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSc4z5u6DQP2MDPQkm8-T6jFZ_plYgFVVFDwmZPqdeA_47VtGA/viewform?usp=pp_url&entry.11=[[USER_ID]]";
 
     async function main() {
       await liff.init({ liffId });
@@ -22,7 +21,7 @@
       const profile = await liff.getProfile();
       const userId = profile.userId;
 
-      const redirectUrl = `${formBaseUrl}&${lineIdEntry}=${encodeURIComponent(userId)}`;
+      const redirectUrl = formBaseUrl.replace('[[USER_ID]]', encodeURIComponent(userId));
       window.location.href = redirectUrl;
     }
 
