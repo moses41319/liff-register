@@ -2,17 +2,19 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>註冊表單跳轉中...</title>
+  <title>會員註冊導引中...</title>
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 </head>
 <body>
-  <p>⏳ 正在開啟註冊表單，請稍候...</p>
+  <p>🚀 正在跳轉到註冊表單...</p>
   <script>
-    const liffId = "2007867560-dlxn7yaL";
-    const formBaseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSc4z5u6DQP2MDPQkm8-T6jFZ_plYgFVVFDwmZPqdeA_47VtGA/viewform?usp=pp_url&entry.1796380726=[[USER_ID]]";
+    const liffId = '2007867560-dlxn7yaL'; // ✅ 你的 LIFF ID
+    const formBaseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSc4z5u6DQP2MDPQkm8-T6jFZ_plYgFVVFDwmZPqdeA_47VtGA/viewform';
+    const userIdField = 'entry.1796380726'; // ✅ 你的 Google 表單中 userId 對應欄位（L欄）
 
     async function main() {
       await liff.init({ liffId });
+
       if (!liff.isLoggedIn()) {
         liff.login();
         return;
@@ -20,9 +22,10 @@
 
       const profile = await liff.getProfile();
       const userId = profile.userId;
+      const formUrl = `${formBaseUrl}?usp=pp_url&${userIdField}=${userId}`;
 
-      const redirectUrl = formBaseUrl.replace('[[USER_ID]]', encodeURIComponent(userId));
-      location.replace(redirectUrl); // 用這行替代 window.location.href
+      // 自動跳轉到 Google 表單
+      window.location.href = formUrl;
     }
 
     main();
